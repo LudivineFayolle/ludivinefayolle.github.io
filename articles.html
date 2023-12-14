@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="articles.css">
+    <title>Articles</title>
+</head>
+
+<body>
+    <div id="hero">
+        <div class="container">
+            <header>
+                <div id="menu">
+                    <img class="logo" src="image/logo.png" alt="">
+                    <ul>
+                        <li>
+                            <a href="index.html">Accueil</a>
+                        </li>
+                        <li>
+                            <a href="a_propos.html">A propos</a>
+                        </li>
+                        <li>
+                            <a href="galerie.html">Galerie</a>
+                        </li>
+                        <li>
+                            <a href="articles.html">Articles</a>
+                        </li>
+                    </ul>
+                </div>
+                <span class="contact">
+                    Contact
+                </span>
+            </header>
+        </div>
+    </div>
+
+
+    <div class="case">
+        <div class="square">
+            <img class="mask" src="image/london.jpg">
+            <div class="h1">10 jours à Londres</div>
+            <p>Londres est une ville magnifique et dynamique. Il faut
+                visiter cette ville au moins une fois dans sa vie.</p>
+
+            <div><a href="https://medium.com/@laheshk/is-apple-a-design-company-f5c83514e261" target="_"
+                    class="button">Lire plus</a></div>
+        </div>
+    </div>
+
+
+
+
+    <section id="articles-root">
+        <!-- Articles added with javascript code -->
+    </section>
+    <div id="up-arrow">
+        <a href="#top"><img src="/image/london.jpg" alt=""></a>
+    </div>
+
+    <!-- Créez un fichier javascript et créez un lien vers ce fichier ici. -->
+    <script>
+        const parentContainer = document.getElementById("articles-root");
+
+        // Function to create and append an article element
+        function createArticle(index) {
+            const article = document.createElement("div");
+            article.classList.add("card");
+            article.innerHTML = `
+      <img src="https://picsum.photos/200/300?random=${index}" alt="place holder" />
+      <h3>Titre de l'article ${index}</h3>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, omnis? ...</p>
+      <a href="/blog-post.html?articleID=${index}"  >plus ...</a>
+    `;
+            parentContainer.appendChild(article);
+        }
+
+        // Create 10 articles
+        for (let i = 1; i <= 10; i++) {
+            createArticle(i);
+        }
+    </script>
+
+
+</body>
+
+</html>
