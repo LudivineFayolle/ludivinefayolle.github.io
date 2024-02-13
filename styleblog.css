@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
+body {
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    width: 1140px;
+}
+
+#hero{
+    padding-top: 35px;
+    background-image: url(images/venise.jpg);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 50%;
+    width: 100%;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+}
+
+#hero header{
+    display: flex;
+    justify-content: space-between;
+}
+
+#hero #menu {
+    display: flex;
+    align-items: center;
+}
+
+#hero #menu .logo{
+    height: 100px;
+}
+
+#hero #menu ul {
+    display: flex; 
+    list-style: none;
+}
+
+#hero #menu ul li {
+    margin: 0px 15px;
+}
+
+#hero #menu ul li a {
+    text-decoration: none;
+    color: #352c2c;
+    font-weight: 500;
+}
+
+.contact {
+    color: #352c2c;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+}
+
+h1 {
+    font-family: 'Lora', serif; 
+    font-size: 66px; 
+    margin-top: 170px;
+    font-weight: 300;
+    margin-bottom: 0; 
+}
+
+h2 {
+    font-family: 'Lora', serif;
+    font-weight: 300; 
+    margin-bottom: 0;
+    font-size: 40px; 
+    margin-top: 0px; 
+}
+
+#title {
+    display: flex;
+    max-width: 50%;
+    flex-direction: column;
+}
+
+#hero p{
+    max-width: 65%;
+    line-height: 1,7rem;
+    margin-top: 0px;
+    margin-bottom: 40px;
+}
+
+button {
+    max-width: 170px; /* Je limite la largeur de mon bouton a 170px */
+    background: transparent; /* je retire le background */
+    border-radius: 8px; /* J'arrondie les coins de mon bouton */
+    height: 44px; /* je lui donne une hauteur */
+    text-transform: uppercase; /* Je m'assure que le texte du bouton soit en majuscule */
+    border: 3px #E0657E solid; /* je défini la bordure de 3px dorée et solide */ 
+    font-weight: bold; /* Je définis la graisse de texte de mon button, j'utilise le mon clé bold (épai en anglais) mais j'aurais pu mettre 700 (c'est identique) */
+}
+
+#about{
+    background-color: #f9f3ec;
+    padding-top: 100px;
+    width: 100%;
+    height: 300px;
+}
+
+#about .container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#about h2{
+    font-family: 'Lora', serif; 
+    display: flex;
+    align-items: flex-start;
+    margin-left: 150px;
+    width: 120px;
+    height: 60px;
+}
+
+.gold{
+    color: #E0657E;
+}
+
+.paragraph{
+    width: 580px;
+}
+
+.p1{
+    margin-top: 0;
+}
+
+

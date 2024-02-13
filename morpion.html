@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(to bottom, #ffd1dc, #aee3fa); /* Fond animé pastel */
+      animation: animateBackground 10s infinite alternate;
+      position: relative; /* Pour positionner les paillettes */
+      overflow: hidden; /* Pour empêcher les paillettes de sortir du cadre */
+    }
+
+    @keyframes animateBackground {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .glitter {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #f8f9fa; /* Couleur des paillettes argentées */
+      border-radius: 50%; /* Forme des paillettes */
+      animation: glitterFall 5s infinite; /* Animation de chute des paillettes */
+    }
+
+    @keyframes glitterFall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 1;
+      }
+    }
+
+    #header {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(3, 120px); /* Largeur légèrement augmentée */
+      grid-gap: 10px; /* Espacement légèrement augmenté */
+    }
+
+    .cell {
+      width: 100%;
+      height: 120px; /* Hauteur légèrement augmentée */
+      font-size: 36px; /* Taille du texte augmentée */
+      text-align: center;
+      cursor: pointer;
+      background-color: #b3e5fc; /* Couleur de fond des cellules en bleu */
+      border-radius: 15px; /* Bordures arrondies */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce pour l'effet de profondeur */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cell:hover {
+      background-color: #4fc3f7; /* Couleur de fond des cellules en bleu foncé au survol */
+    }
+
+    #reset-button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #back-button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+  <title>Morpion</title>
+</head>
+<body>
+<h1>Morpion</h1>
+<div id="header">Tour de Joueur 1 (X)</div>
+<div id="board"></div>
+<button id="reset-button" onclick="resetGame()">Réinitialiser le Jeu</button>
+<button id="back-button" onclick="goBack()">Retour</button>
+
+<!-- Paillettes argentées -->
+<div class="glitter" style="left: 20%; top: 10%;"></div>
+<div class="glitter" style="left: 50%; top: 30%;"></div>
+<div class="glitter" style="left: 80%; top: 20%;"></div>
+<div class="glitter" style="left: 10%; top: 40%;"></div>
+<div class="glitter" style="left: 40%; top: 60%;"></div>
+<div class="glitter" style="left: 70%; top: 50%;"></div>
+<div class="glitter" style="left: 30%; top: 80%;"></div>
+<div class="glitter" style="left: 60%; top: 70%;"></div>
+<div class="glitter" style="left: 90%; top: 90%;"></div>
+
+<script>
+  // Code JavaScript pour le jeu de Morpion
+
+  const header = document.getElementById('header');
+  const board = document.getElementById('board');
+  const cells = [];
+  let currentPlayer = 'X';
+  let gameActive = true;
+
+  // Créer le tableau de Morpion
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      cell.dataset.row = i;
+      cell.dataset.col = j;
+      cell.addEventListener('click', handleCellClick);
+      board.appendChild(cell);
+      cells.push(cell);
+    }
+  }
+
+  // Créer le bouton de réinitialisation
+  const resetButton = document.getElementById('reset-button');
+
+  function handleCellClick() {
+    if (!gameActive || this.textContent !== '') return;
+
+    this.textContent = currentPlayer;
+    if (checkWinner()) {
+      alert(`Le joueur ${currentPlayer} gagne !`);
+      gameActive = false;
+    } else if (isBoardFull()) {
+      alert('C\'est une égalité !');
+      gameActive = false;
+    } else {
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+      updateHeader();
+    }
+  }
+
+  function checkWinner() {
+    const winningCombinations = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], // Lignes
+      [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colonnes
+      [0, 4, 8], [2, 4, 6]             // Diagonales
+    ];
+
+    return winningCombinations.some(combination => {
+      const [a, b, c] = combination;
+      return cells[a].textContent !== '' &&
+             cells[a].textContent === cells[b].textContent &&
+             cells[a].textContent === cells[c].textContent;
+    });
+  }
+
+  function isBoardFull() {
+    return cells.every(cell => cell.textContent !== '');
+  }
+
+  function resetGame() {
+    // Effacer le tableau
+    cells.forEach(cell => {
+      cell.textContent = '';
+    });
+
+    // Réinitialiser l'état du jeu
+    currentPlayer = 'X';
+    gameActive = true;
+    updateHeader();
+  }
+
+  function updateHeader() {
+    header.textContent = `Tour de Joueur ${currentPlayer === 'X' ? '1 (X)' : '2 (O)'}`;
+  }
+
+  function goBack() {
+    window.history.back();
+  }
+</script>
+
+</body>
+</html>

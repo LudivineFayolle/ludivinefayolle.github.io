@@ -1,0 +1,73 @@
+.titre{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.sous-textes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    width: 1142px;
+    margin: 0 auto;
+}
+  
+.box{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  
+    padding: 50px 0;
+  }
+  .item {
+    -ms-flex-preferred-size: calc(33.33333% - 30px);
+    flex-basis: calc(33.33333% - 30px);
+  
+    margin: 0 15px 30px;
+  
+    overflow: hidden;
+  
+    border-radius: 28px;
+  }
+  .item_link {
+    display: block;
+    padding: 30px 20px;
+    background-color: #8531cf;
+  
+    overflow: hidden;
+  
+    position: relative;
+  }
+  .item_link:hover,
+  .item_link:hover .ag-courses-item_date {
+    text-decoration: none;
+    color: #FFF;
+  }
+
+  .item_title {
+    min-height: 87px;
+    margin: 0 0 25px;
+    font-weight: bold;
+    font-size: 30px;
+    color: #FFF;
+    position: relative;
+  }
+
+  .item_date {
+    font-size: 18px;
+    color: #FFF;
+    position: relative;
+  }
